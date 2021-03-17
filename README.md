@@ -1,3 +1,4 @@
+[![clang-format-check](https://github.com/GloryOfNight/ConsoleRoguelike/actions/workflows/clang-format-check.yml/badge.svg?branch=main)](https://github.com/GloryOfNight/ConsoleRoguelike/actions/workflows/clang-format-check.yml)
 # ConsoleRoguelike
 C++ console roguelike for teaching purposes
 
