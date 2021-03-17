@@ -5,6 +5,8 @@
 #include <string>
 #include <vector>
 
+class Enemy;
+
 class Level
 {
 public:
@@ -17,9 +19,11 @@ public:
 
 	void print();
 
-	void init(Player& player);
+	void init(Player& player, std::vector<Enemy>& enemies);
 
 	void tryMovePlayer(Player& player, int directionX, int directionY);
+
+	void tryMoveEnemy(Enemy& enemy, const Player& player);
 
 private:
 	std::vector<std::string> _levelData;

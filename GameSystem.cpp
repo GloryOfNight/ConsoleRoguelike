@@ -12,7 +12,7 @@ void GameSystem::start()
 {
 	bool isDone{false};
 
-	_level.init(_player);
+	_level.init(_player, _enemies);
 
 	while (!isDone)
 	{
@@ -38,6 +38,12 @@ void GameSystem::start()
 		default:
 			isDone = true;
 			break;
+		}
+
+		for (Enemy& enemy : _enemies)
+		{
+			enemy.tick();
+			_level.tryMoveEnemy(enemy, _player);
 		}
 
 		system("CLS");

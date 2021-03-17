@@ -1,5 +1,7 @@
 #include "Level.h"
 
+#include "Enemy.h"
+
 #include <fstream>
 #include <iostream>
 
@@ -33,7 +35,7 @@ void Level::print()
 	}
 }
 
-void Level::init(Player& player)
+void Level::init(Player& player, std::vector<Enemy>& enemies)
 {
 	const size_t size{_levelData.size()};
 	for (int i = 0; i < size; ++i)
@@ -47,6 +49,9 @@ void Level::init(Player& player)
 			{
 			case '@':
 				player.setPosition(i, k);
+				break;
+			case 'E':
+				enemies.push_back(Enemy(i, k, 2, 1));
 				break;
 			default:
 				break;
@@ -73,4 +78,43 @@ void Level::tryMovePlayer(Player& player, int directionX, int directionY)
 		player.setPosition(targetX, targetY);
 		break;
 	}
+}
+
+void Level::tryMoveEnemy(Enemy& enemy, const Player& player)
+{
+	const int enemyDelayCounter = enemy.getDelayCounter();
+	if (enemyDelayCounter % enemy.getDelay() != 0)
+	{
+		return;
+	}
+
+	int playerPosX;
+	int playerPosY;
+	player.getPosition(playerPosX, playerPosY);
+
+	int enemyPosX;
+	int enemyPosY;
+	enemy.getPosition(enemyPosX, enemyPosY);
+
+	if (playerPosX > enemyPosX)
+	{
+		enemy.setPositionX(enemyPosX + 1);
+	}
+	else
+	{
+		enemy.setPositionX(enemyPosX - 1);
+	}
+
+	if (playerPosY > enemyPosY)
+	{
+		enemy.setPositionY(enemyPosY + 1);
+	}
+	else
+	{
+		enemy.setPositionY(enemyPosY - 1);
+	}
+
+	_levelData[enemyPosX][enemyPosY] = '.';
+	enemy.getPosition(enemyPosX, enemyPosY);
+	_levelData[enemyPosX][enemyPosY] = 'E';
 }
