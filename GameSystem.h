@@ -1,7 +1,7 @@
 #pragma once
+#include "Enemy.h"
 #include "Level.h"
 #include "Player.h"
-#include "Enemy.h"
 
 #include <string>
 #include <vector>

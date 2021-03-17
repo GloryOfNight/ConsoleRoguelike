@@ -6,27 +6,27 @@ public:
 		: _x{x}
 		, _y{y}
 		, _delay{delay}
-		, _speed{speed} 
+		, _speed{speed}
 	{
 	}
 
-	void setPositionX(const int x) 
+	void setPositionX(const int x)
 	{
 		_x = x;
 	}
 
-	void setPositionY(const int y) 
+	void setPositionY(const int y)
 	{
 		_y = y;
 	}
 
-	void getPosition(int& x, int& y) const 
+	void getPosition(int& x, int& y) const
 	{
 		x = _x;
 		y = _y;
 	}
 
-	int getDelay() const 
+	int getDelay() const
 	{
 		return _delay;
 	}
@@ -36,12 +36,12 @@ public:
 		return _delayCounter;
 	}
 
-	int getSpeed() const 
+	int getSpeed() const
 	{
 		return _speed;
 	}
 
-	void tick() 
+	void tick()
 	{
 		_delayCounter++;
 	}
@@ -49,7 +49,7 @@ public:
 private:
 	int _x;
 	int _y;
-	
+
 	// delay between player moves
 	const int _delay;
 	int _delayCounter = 0;
